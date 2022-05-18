@@ -65,7 +65,7 @@ function Timer() {
   if(seconds < 10) seconds = '0'+seconds;
 
   return (
-    <div id="pomodoroTimer" style={{marginTop:'20px', display: 'block'}}>
+    <div id="pomodoroTimer" style={{marginTop:'100px', display: 'block'}}>
       <CircularProgressbar
         value={percentage}
         text={minutes + ':' + seconds}

@@ -22,16 +22,8 @@ const ListaTareas = ({tareas, cambiarTareas, mostrarCompletadas}) => {
 	}
 
 	const borrarTarea = (email) => {
-		axios.delete("/users/"+email).then((response) => {
-			console.log("response", response);
-		})
-
-		cambiarTareas(tareas.filter((tarea) => {
-			if(tarea.email !== email){
-				return tarea;
-			}
-			return;
-		}));
+		cambiarTareas(tareas.filter((tareas2 => tareas2.texto !== email)));
+		
 	}
 
 	return (

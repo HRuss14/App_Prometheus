@@ -6,6 +6,7 @@ import Tempo from './temporizador';
 import logo from './Logo_Final.svg'
 import InicioSesion from './login'
 import Registro from './register';
+import PaginaInicio from './inicio';
 
 function App() {
 
@@ -31,14 +32,15 @@ function showTemp(){
             
           </nav>
         </header>
-        
         <main>
           <Routes>
             <Route path='/' element={<div>Error 404 not found</div>} />
-            <Route path='/inicio' element={<div>Error 404 not found</div>} />
+            <Route path='/inicio' element={<PaginaInicio/>} />
             <Route path='/tareas' element={<AgendaTareas />} />
             <Route path='/temporizador' element={<Tempo />} />
             <Route path='/estadisticas' element={<div>Aqui irán la estadisticas del usuario</div>} />
+            <Route path="/login" element={<InicioSesion/>}/>
+            <Route path="/registro" element={<Registro/>}/>
           </Routes>
          
         </main>

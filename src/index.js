@@ -8,13 +8,13 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const Index =()=>{
   return(
-<BrowserRouter>
-<Routes>
-    <Route path="/" element={<InicioSesion/>}/>
-    <Route path="/registro" element={<Registro/>}/>
-    
-    </Routes>
-</BrowserRouter>
+    <App/>
+    // <BrowserRouter>
+    //   <Routes>
+    //     <Route path="/" element={<InicioSesion/>}/>
+    //     <Route path="/registro" element={<Registro/>}/>
+    //   </Routes>
+    // </BrowserRouter>
   );
 }
 ReactDOM.render(<Index/>, document.getElementById('root'));

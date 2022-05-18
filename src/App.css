@@ -27,7 +27,8 @@ button{
   width: 100px;
   cursor: pointer;
 }
-
+.selectTareas:focus{border: 1px solid rgb(109, 19, 27);
+	outline: none;}
 .inputs{
 	border-radius: 2px;
 	border: 1px solid rgb(109, 19, 27);
@@ -128,14 +129,14 @@ label{
 }
 .contenedor {
 	position: relative;
-	width: 500%;
+	width: 1000%;
 	height: 100%;
-    left: -175px;
+    left: -300px;
     top: 40px;
 	box-shadow: 0 2px 10px rgba(139,139,139,.25);
 	border-radius: 3px;
 	max-height: 90vh;
-	max-width: 700px;
+	max-width: 1000px;
 	overflow: auto;
 	display: grid;
 	grid-template-rows: auto auto 1fr;
@@ -145,6 +146,10 @@ label{
 	top: 0px;
 	cursor: pointer;
 	left: 0px;
+}
+.logo_inicio{
+	position: absolute;
+	left: 700px;
 }
 .header {
 	display: flex;
