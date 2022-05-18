@@ -10,7 +10,6 @@ const AgendaTareas = () => {
   const [tareas, cambiarTareas] = useState([])
 
   useEffect(() => {
-    //https://my-json-server.typicode.com/juan2409/HTTPdbp/tareas
     axios("/users").then((response) => {
       const tareasGuardadas = response.data.map((tarea)=> {
         return {
@@ -30,7 +29,6 @@ const AgendaTareas = () => {
     configMostrarCompletadas = localStorage.getItem('mostrarCompletadas') === 'true';
   }
   const [mostrarCompletadas, cambiarMostrarCompletadas] = useState(configMostrarCompletadas);
-
   
 
   return (
