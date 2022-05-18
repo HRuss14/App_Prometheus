@@ -36,7 +36,7 @@ const Tarea = ({tarea, toggleCompletada, editarTarea, borrarTarea}) => {
 						Actualizar
 					</button>
 				</form>
-				: tarea.texto
+				: <p>{tarea.texto}, {tarea.dificultad}, {tarea.dueDate}, {tarea.tiempoEst}</p>
 				}
 			</div>
 			<div className="lista-tareas__contenedor-botones">
