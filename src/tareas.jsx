@@ -9,14 +9,25 @@ const Tarea = ({tarea, toggleCompletada, editarTarea, borrarTarea}) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		editarTarea(tarea.id, nuevaTarea);
+		editarTarea(tarea.id, nuevaTarea, tarea.tiempoEst, tarea.dificultad, tarea.dueDate);
 		cambiarEditandoTarea(false);
+	}
+
+	const formatEstTime = (num, nom) => {
+		if (num == 2) {
+			return "Corta";
+		} else if (num == 8){
+			return "Media";
+		} else if(num == 20){
+			return "Larga";
+		}
+		console.log(num, nom);
 	}
 
 	return (
 		<li className="lista-tareas__tarea">
 			<FontAwesomeIcon 
-				icon={tarea.completada ? faCheckSquare : faSquare}
+				icon={tarea.completada === "Completada" ? faCheckSquare : faSquare}
 				className="lista-tareas__icono lista-tareas__icono-check"
 				onClick={() => toggleCompletada(tarea.id)}
 			/>
@@ -36,7 +47,7 @@ const Tarea = ({tarea, toggleCompletada, editarTarea, borrarTarea}) => {
 						Actualizar
 					</button>
 				</form>
-				: <p>{tarea.texto}, {tarea.dificultad}, {tarea.dueDate}, {tarea.tiempoEst}</p>
+				: <p><h4>{tarea.texto}</h4> <i>Dificultad: </i>{tarea.dificultad} - <i> Fecha: </i>{tarea.dueDate} - <i> Tiempo Estimado: </i>{formatEstTime(tarea.tiempoEst, tarea.texto)}</p>
 				}
 			</div>
 			<div className="lista-tareas__contenedor-botones">
@@ -48,7 +59,7 @@ const Tarea = ({tarea, toggleCompletada, editarTarea, borrarTarea}) => {
 				<FontAwesomeIcon 
 					icon={faTimes} 
 					className="lista-tareas__icono lista-tareas__icono-accion" 
-					onClick={() => borrarTarea(tarea.texto)}
+					onClick={() => borrarTarea(tarea.id)}
 				/>
 			</div>
 		</li>

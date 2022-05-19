@@ -8,7 +8,7 @@ const Header = ({mostrarCompletadas, cambiarMostrarCompletadas}) => {
 	return (
 		<header className="header">
 			<h1 className="header__titulo">Mis Tareas</h1>
-			{mostrarCompletadas ?
+			{/* {mostrarCompletadas ?
 				<button 
 					className="header__boton"
 					onClick={() => toggleCompletadas()}
@@ -24,7 +24,7 @@ const Header = ({mostrarCompletadas, cambiarMostrarCompletadas}) => {
 					Todas
 					
 				</button>
-			}
+			} */}
 		</header>
 	);
 }

@@ -10,14 +10,17 @@ import Helmet from 'react-helmet';
 const AgendaTareas = () => {
  
   const [tareas, cambiarTareas] = useState([])
-
+  
   useEffect(() => {
-    axios("/users").then((response) => {
+    axios("tasksPerUser/"+"User1").then((response) => {
       const tareasGuardadas = response.data.map((tarea)=> {
         return {
-          id: tarea.client_id,
-          texto: tarea.email,
-          completada: tarea.completada,
+          id: tarea.task_id,
+          texto: tarea.title,
+          dificultad: tarea.difficulty,
+          completada: tarea.state,
+          tiempoEst: tarea.stimated_time,
+          dueDate: tarea.due_date,
         };
       });
       cambiarTareas(tareasGuardadas);

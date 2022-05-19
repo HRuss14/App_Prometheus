@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import axios from './instances/axiosInstance';
 
 
 const FormularioTareas = ({tareas, cambiarTareas}) => {
@@ -20,11 +21,31 @@ const FormularioTareas = ({tareas, cambiarTareas}) => {
 					dificultad: inputDificultad,
 					dueDate: inputDate,
 					tiempoEst: inputTiempo,
-					completada: false
+					completada: "Pendiente",
 				}
 			]
 		);
 		cambiarInputTarea('');
+		cambiarInputDif('');
+		cambiarInputDate('');
+		cambiarInputTiempo('')
+
+		axios.post('tasks', {
+            task_id: uuidv4(),
+    		user_id: "User1",
+    		title: inputTarea,
+    		category: "Ejecución",
+    		stimated_time: inputTiempo,
+    		difficulty: inputDificultad,
+    		effort: 0,
+    		state: "Pendiente",
+    		due_date: inputDate,
+        })
+        .then((response) => {
+            console.log(response);
+        }, (error) => {
+            console.log(error);
+        });
 	}
 
 	return (
@@ -36,7 +57,7 @@ const FormularioTareas = ({tareas, cambiarTareas}) => {
 				placeholder="Titulo tarea"
 				value={inputTarea}
 				onChange={(e) => cambiarInputTarea(e.target.value)}
-				
+				required
 			/>
 			<input
 			style={{height:'58px'}}
@@ -45,8 +66,9 @@ const FormularioTareas = ({tareas, cambiarTareas}) => {
 				max= "10"
 				className="formulario-tareas__input"
 				placeholder="Dificultad (1-10)"
-				//value={inputDificultad}
+				value={inputDificultad}
 				onChange={(e) => cambiarInputDif(e.target.value)}
+				required
 			/>
 			<input
 				type="Date"
@@ -55,17 +77,20 @@ const FormularioTareas = ({tareas, cambiarTareas}) => {
 				placeholder="Fecha fin"
 				value={inputDate}
 				onChange={(e) => cambiarInputDate(e.target.value)}
+				required
 			/>
 			<select
 				type="text"
 				className="formulario-tareas__input"
 				placeholder="Tiempo estimado"
-				onChange={(e) => cambiarInputTiempo(e.target.value)}
+				onChange={(e) => cambiarInputTiempo(e.target.value)} 
+				value={inputTiempo}
+				required
 			>
 				<option value="" disabled selected> Duración Estimada </option>
-				<option value="Corta"> Corta </option>
-				<option value="Media"> Media </option>
-				<option value="Larga"> Larga </option>
+				<option value="2" name="Corta"> Corta </option>
+				<option value="8" name="Media"> Media </option>
+				<option value="20" name="Larga"> Larga </option>
 			</select>
 			<button type='Submit' style={{ textAlign: 'center', fontSize:'24px', marginLeft:'20px'}}>✔</button>
 		</form>

@@ -4,11 +4,10 @@ import logoRegistro from './Logo_Registro.svg';
 import './App.css';
 import axios from './instances/axiosInstance';
 import { useNavigate } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 const Registro=()=>{
 
-const [counterId, changeCounter] = useState("User");
-const [counter, changeNumber] = useState(4)
 const [name, changeName] = useState("");
 const [mail, changeMail] = useState("");
 const [gender, changeGender] = useState(false);
@@ -35,7 +34,7 @@ function postInfo() {
     
     if (password === passwordConfirm){
         axios.post('users', {
-            client_id: counterId + counter,
+            client_id: uuidv4(),
             email: mail,
             password: password,
             genero: gender,
@@ -64,8 +63,7 @@ function postInfo() {
             <input class="inputs"style={{display:'flex',alignItems:'flex-start', padding:'8px 12px', width:'471px',height:'40px', background:'#ffffff'}} 
             type="text" onChange={e => changeName(e.target.value)} placeholder="Nombre*" required ></input>
 
-            <input class="inputs"style={{marginTop:'40px', display:'flex',alignItems:'flex-start', padding:'8px 12px', width:'471px',height:'40px', background:'#ffffff'}} 
-x
+            <input class="inputs"style={{marginTop:'40px', display:'flex',alignItems:'flex-start', padding:'8px 12px', width:'471px',height:'40px', background:'#ffffff'}}
             type="email" onChange={e => changeMail(e.target.value)} placeholder="Correo*" required></input>
 
             <br></br>
@@ -87,9 +85,8 @@ x
             type="password" onChange={e => changePwdConfirm(e.target.value)} placeholder="Confirmar Contraseña*" required></input>
             
 
-            <button class="botInicio" onClick={() => {changeNumber(counter+1); postInfo()}}>Confirmar</button>
+            <button class="botInicio" onClick={() => postInfo()}>Confirmar</button>
             
-     
         </div>
       
         </form>
