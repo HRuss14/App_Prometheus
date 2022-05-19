@@ -32,7 +32,7 @@ function postInfo() {
             }
           }); */
     
-    if (password === passwordConfirm){
+    if (password === passwordConfirm && password !== "" && password !== ""){
         axios.post('users', {
             client_id: uuidv4(),
             email: mail,
