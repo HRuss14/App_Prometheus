@@ -59,8 +59,8 @@ function postInfo() {
             <title>Registro</title>
         </Helmet>
         <form>
-        <img class="logo_grande" src={logoRegistro} style={{marginTop:'-60px'}}/>
-        <div style={{ position:'absolute', left: '700px', alignItems:'center'}} >
+        <img class="logo_grande" src={logoRegistro} style={{position:'relative',marginTop:'-150px', left:'-100px'}}/>
+        <div style={{ position:'absolute', left: '780px', alignItems:'center',marginTop:'-20px'}} >
             <input class="inputs"style={{display:'flex',alignItems:'flex-start', padding:'8px 12px', width:'471px',height:'40px', background:'#ffffff'}} 
             type="text" onChange={e => changeName(e.target.value)} placeholder="Nombre*" required ></input>
 
@@ -88,9 +88,10 @@ x
             
 
             <button class="botInicio" onClick={() => {changeNumber(counter+1); postInfo()}}>Confirmar</button>
-            <div style={{ marginTop:'20px'}}></div>
-       
+            
+     
         </div>
+      
         </form>
         
     </>

@@ -5,6 +5,7 @@ import {useState, useEffect} from "react";
 import SettingsContext from "./SettingsContext";
 import ListaTareas from './lista';
 import axios from './instances/axiosInstance';
+import Helmet from 'react-helmet';
 
 import React from 'react';
 
@@ -30,6 +31,9 @@ function Tempo() {
  
   return ( 
     <div>
+      <Helmet>
+        <title>Temporizador</title>
+      </Helmet>
       <select class="selectTareas" style={{height:'35px',width:'150%',left:'-80px' , position:'relative', fontSize:'18px',background:'#ffffff', borderRadius:'5px', border:'1px solid rgb(109, 19, 27) '}}>
         <option value="ListaTareas"> Seleccione Tarea </option>
         {tareas.length > 0 ? tareas.map((tarea) => {
