@@ -26,6 +26,7 @@ const handleSubmit = (e) => {
     if (loginSuccess) {
         navigate("/inicio");
     }
+    navigate("/inicio");
 }
 
     return(
