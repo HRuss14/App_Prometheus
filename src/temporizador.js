@@ -3,9 +3,8 @@ import Timer from "./Timer";
 import Settings from "./Settings";
 import {useState, useEffect, useContext} from "react";
 import SettingsContext from "./SettingsContext";
-import ListaTareas from './lista';
 import Helmet from 'react-helmet';
-
+import NavBar from './navbar';
 import React from 'react';
 import { UserContext } from './userContext';
 
@@ -25,6 +24,7 @@ function Tempo() {
       <Helmet>
         <title>Temporizador</title>
       </Helmet>
+      <NavBar></NavBar>
       <SettingsContext.Provider value={{
         showSettings,
         setShowSettings,

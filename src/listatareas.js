@@ -6,6 +6,7 @@ import ListaTareas from './lista';
 import axios from './instances/axiosInstance';
 import Helmet from 'react-helmet';
 import { UserContext } from './userContext';
+import NavBar from './navbar';
 
 
 const AgendaTareas = () => {
@@ -39,6 +40,8 @@ const AgendaTareas = () => {
 
 
   return (
+    <div>
+      <NavBar></NavBar>
     <div className="contenedor">
       <Helmet>
         <title>Tareas</title>
@@ -53,6 +56,7 @@ const AgendaTareas = () => {
         cambiarTareas={cambiarTareas}
         mostrarCompletadas={mostrarCompletadas}
       />
+    </div>
     </div>
   );
 }

@@ -6,6 +6,7 @@ import ficha from './texto.png'
 import ficha2 from './texto2.png'
 import ficha3 from './texto3.png'
 import { UserContext } from "./userContext";
+import NavBar from "./navbar";
 
 
 const PaginaInicio=()=>{
@@ -17,8 +18,9 @@ const PaginaInicio=()=>{
          <Helmet>
             <title>Inicio</title>
         </Helmet>
+		<NavBar></NavBar>
         <img class="logo_inicio" style={{position:'relative', left:'0px',marginTop:'-100px'}} src={logoGrande}/>
-		<p>usuario: {user.id}</p>
+	
 		<div class="slide">
 			<div class="slide-inner">
 				<input class="slide-open" type="radio" id="slide-1" 

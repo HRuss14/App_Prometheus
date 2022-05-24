@@ -25,7 +25,7 @@ const Tarea = ({tarea, toggleCompletada, editarTarea, borrarTarea}) => {
 	}
 
 	return (
-		<li className="lista-tareas__tarea">
+		<li className="lista-tareas__tarea" style={{height:'75px'}}>
 			<FontAwesomeIcon 
 				icon={tarea.completada === "Completada" ? faCheckSquare : faSquare}
 				className="lista-tareas__icono lista-tareas__icono-check"
@@ -33,12 +33,13 @@ const Tarea = ({tarea, toggleCompletada, editarTarea, borrarTarea}) => {
 			/>
 			<div className="lista-tareas__texto">
 				{editandoTarea ? 
-				<form action="" className="formulario-editar-tarea" onSubmit={handleSubmit}>
+				<form action="" className="formulario-editar-tarea" onSubmit={handleSubmit} >
 					<input 
 						type="text"
 						className="formulario-editar-tarea__input"
 						value={nuevaTarea}
 						onChange={(e) => cambiarNuevaTarea(e.target.value)}
+						
 					/>
 					<button 
 						type="submit" 
@@ -47,7 +48,7 @@ const Tarea = ({tarea, toggleCompletada, editarTarea, borrarTarea}) => {
 						Actualizar
 					</button>
 				</form>
-				: <p><h4>{tarea.texto}</h4> <i>Dificultad: </i>{tarea.dificultad} - <i> Fecha: </i>{tarea.dueDate} - <i> Tiempo Estimado: </i>{formatEstTime(tarea.tiempoEst, tarea.texto)}</p>
+				: <p style={{margin:'10px'}}><h4 style={{ marginBottom:'5px', fontSize:'18px'}}>{tarea.texto}</h4> Dificultad: {tarea.dificultad}  -   Fecha: {tarea.dueDate} -  Tiempo Estimado: {formatEstTime(tarea.tiempoEst, tarea.texto)}</p>
 				}
 			</div>
 			<div className="lista-tareas__contenedor-botones">
