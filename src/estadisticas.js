@@ -47,6 +47,7 @@ const Estadisticas=()=>{
         <h3 style={{fontSize: '20px', top: '-60px', position:'relative', fontWeight:'normal', color:'#2A1215'}}>Número de tareas: {tareas.length}</h3><br></br>
         <h3 style={{fontSize: '20px', top: '-40px', position:'relative', fontWeight:'normal', color:'#2A1215'}}>Dificultad total: {calculoDificultad()}</h3><br></br>
         <h3 style={{fontSize: '20px', top: '-20px', position:'relative', fontWeight:'normal', color:'#2A1215'}}>Dificultad media: {dificultadMedia()}</h3>
+        <button>ENVIAR CORREO</button>
     </>
     )
 }

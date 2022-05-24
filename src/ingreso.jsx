@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import axios from './instances/axiosInstance';
+import { UserContext } from './userContext';
 
 
 const FormularioTareas = ({tareas, cambiarTareas}) => {
@@ -8,6 +9,7 @@ const FormularioTareas = ({tareas, cambiarTareas}) => {
 	const [inputDificultad, cambiarInputDif] = useState(0);
 	const [inputDate, cambiarInputDate] = useState('');
 	const [inputTiempo, cambiarInputTiempo] = useState("");
+	const {user, changeUser} = useContext(UserContext)
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -32,7 +34,7 @@ const FormularioTareas = ({tareas, cambiarTareas}) => {
 
 		axios.post('tasks', {
             task_id: uuidv4(),
-    		user_id: "User1",
+    		user_id: user.id,
     		title: inputTarea,
     		category: "Ejecución",
     		stimated_time: inputTiempo,

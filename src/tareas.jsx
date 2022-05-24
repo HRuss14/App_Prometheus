@@ -14,11 +14,11 @@ const Tarea = ({tarea, toggleCompletada, editarTarea, borrarTarea}) => {
 	}
 
 	const formatEstTime = (num, nom) => {
-		if (num == 2) {
+		if (num === 2) {
 			return "Corta";
-		} else if (num == 8){
+		} else if (num === 8){
 			return "Media";
-		} else if(num == 20){
+		} else if(num === 20){
 			return "Larga";
 		}
 		console.log(num, nom);

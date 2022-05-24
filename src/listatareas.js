@@ -1,19 +1,21 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './App.css';
 import Header from './header';
 import FormularioTareas from './ingreso';
 import ListaTareas from './lista';
 import axios from './instances/axiosInstance';
 import Helmet from 'react-helmet';
+import { UserContext } from './userContext';
 
 
 const AgendaTareas = () => {
- 
+
   const [tareas, cambiarTareas] = useState([])
-  
+  const { user, changeUser } = useContext(UserContext)
+
   useEffect(() => {
-    axios("tasksPerUser/"+"User1").then((response) => {
-      const tareasGuardadas = response.data.map((tarea)=> {
+    axios("tasksPerUser/" + user.id).then((response) => {
+      const tareasGuardadas = response.data.map((tarea) => {
         return {
           id: tarea.task_id,
           texto: tarea.title,
@@ -27,26 +29,26 @@ const AgendaTareas = () => {
     });
   }, []);
 
-  let configMostrarCompletadas = '';  
-  if(localStorage.getItem('mostrarCompletadas') === null){
+  let configMostrarCompletadas = '';
+  if (localStorage.getItem('mostrarCompletadas') === null) {
     configMostrarCompletadas = true;
   } else {
     configMostrarCompletadas = localStorage.getItem('mostrarCompletadas') === 'true';
   }
   const [mostrarCompletadas, cambiarMostrarCompletadas] = useState(configMostrarCompletadas);
-  
+
 
   return (
     <div className="contenedor">
-       <Helmet>
-    <title>Tareas</title>
-  </Helmet>
-      <Header 
-        mostrarCompletadas={mostrarCompletadas} 
+      <Helmet>
+        <title>Tareas</title>
+      </Helmet>
+      <Header
+        mostrarCompletadas={mostrarCompletadas}
         cambiarMostrarCompletadas={cambiarMostrarCompletadas}
       />
       <FormularioTareas tareas={tareas} cambiarTareas={cambiarTareas} />
-      <ListaTareas 
+      <ListaTareas
         tareas={tareas}
         cambiarTareas={cambiarTareas}
         mostrarCompletadas={mostrarCompletadas}

@@ -1,10 +1,11 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import Helmet from "react-helmet";
 import logoGrande from './Logo_Grande.svg'
 import Boton from "./elementos/Boton";
 import './App.css';
 import { useNavigate } from 'react-router-dom';
 import axios from './instances/axiosInstance';
+import { UserContext } from "./userContext";
 
 const InicioSesion = () =>{
 
@@ -12,10 +13,11 @@ const [mail, changeMail] = useState("User");
 const [password, changePassword] = useState("User");
 let navigate = useNavigate();
 const [loginSuccess, changeSuccess] = useState(false);
+const { user, changeUser } = useContext(UserContext)
 
 const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('users/'+mail+"/"+password)
+    /* axios.post('users/'+mail+"/"+password)
     .then((response) => {
         console.log(response);
         changeSuccess(response);
@@ -25,8 +27,16 @@ const handleSubmit = (e) => {
 
     if (loginSuccess) {
         navigate("/inicio");
+    } */
+    axios.post('users/'+mail+"/"+password).then((response) => {
+        let userLog = response.data
+        changeUser({id: userLog.id, name: userLog.name})
+        if (user.id !== null && user.id !== undefined) {
+        navigate("/inicio");
     }
-    navigate("/inicio");
+      }, (error) => {
+        console.log(error);
+        });
 }
 
     return(

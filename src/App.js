@@ -1,6 +1,6 @@
 import './App.css';
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
-import React from 'react';
+import React, {useMemo, useState} from 'react';
 import AgendaTareas from './listatareas';
 import Tempo from './temporizador';
 import logo from './Logo_Final.svg';
@@ -9,30 +9,29 @@ import InicioSesion from './login'
 import Registro from './register';
 import PaginaInicio from './inicio';
 import Estadisticas from './estadisticas';
+import { UserContext } from './userContext';
 
 function App() {
 
-function hideTemp(){
+const [user, changeUser] = useState({});
+
+function refresh(){
   document.getElementById("pomodoroTimer").style.display = 'none';
 }
 
-function showTemp(){
-  document.getElementById("pomodoroTimer").style.display = 'block';
-}
-
   return (
-   
+    <UserContext.Provider value={{user, changeUser}}>
     <BrowserRouter>
       <div>
         <header>
           <nav  id="navbar" style={{ textAlign: 'center', fontSize: '24px', backgroundColor: '#f54e4e' , width:'1920px', height:'60px', position:'relative', top:'-50px', padding:'15px'}}>
-            <NavLink to='/inicio' onClick={() => hideTemp()}><img class="logo_prometheus" src={logo}/> </NavLink>
-            <NavLink to='/inicio' onClick={() => hideTemp()}>Inicio</NavLink>
-            <NavLink to='/tareas' onClick={() => hideTemp()}>Mis Tareas</NavLink>
-            <NavLink to='/temporizador' onClick={() => hideTemp()}>Temporizador</NavLink>
-            <NavLink to='/estadisticas' onClick={() => hideTemp()}>Estadísticas</NavLink>
-            <NavLink style={{position:'absolute', right:'0px'}} to='/login'> <img class="logout" src={logout}></img></NavLink>
-            
+            <NavLink to='/inicio'><img class="logo_prometheus" src={logo}/> </NavLink>
+            <NavLink to='/inicio'>Inicio</NavLink>
+            <NavLink to='/tareas'>Mis Tareas</NavLink>
+            <NavLink to='/temporizador'>Temporizador</NavLink>
+            <NavLink to='/estadisticas'>Estadísticas</NavLink>
+            <NavLink style={{position:'absolute', right:'0px'}} to='/login' onClick={() => refresh()}> <img class="logout" src={logout}></img></NavLink>
+            <p>Usted ha entrado como: {user.name}</p>
           </nav>
         </header>
         <main>
@@ -49,6 +48,7 @@ function showTemp(){
         </main>
       </div>
     </BrowserRouter>
+    </UserContext.Provider>
   );
 }
 

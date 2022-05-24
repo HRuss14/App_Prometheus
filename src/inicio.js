@@ -1,21 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import Helmet from "react-helmet";
-
 import './App.css'
 import logoGrande from './Logo_Grande.svg'
 import ficha from './texto.png'
 import ficha2 from './texto2.png'
 import ficha3 from './texto3.png'
+import { UserContext } from "./userContext";
 
 
 const PaginaInicio=()=>{
+
+	const {user, changeUser} = useContext(UserContext)
+
     return(
         <>
          <Helmet>
             <title>Inicio</title>
         </Helmet>
         <img class="logo_inicio" style={{position:'relative', left:'0px',marginTop:'-100px'}} src={logoGrande}/>
-        <div class="slide">
+		<p>usuario: {user.id}</p>
+		<div class="slide">
 			<div class="slide-inner">
 				<input class="slide-open" type="radio" id="slide-1" 
 			 	     name="slide" aria-hidden="true" hidden="" checked="checked"></input>
