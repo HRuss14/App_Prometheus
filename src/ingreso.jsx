@@ -2,7 +2,6 @@ import React, {useContext, useState} from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import axios from './instances/axiosInstance';
 import { UserContext } from './userContext';
-import agregar from './agregar.svg'
 
 
 const FormularioTareas = ({tareas, cambiarTareas}) => {
@@ -57,7 +56,7 @@ const FormularioTareas = ({tareas, cambiarTareas}) => {
 		style={{height:'58px'}}
 				type="text"
 				className="formulario-tareas__input"
-				placeholder="Título tarea"
+				placeholder="Titulo tarea"
 				value={inputTarea}
 				onChange={(e) => cambiarInputTarea(e.target.value)}
 				required
@@ -74,7 +73,6 @@ const FormularioTareas = ({tareas, cambiarTareas}) => {
 				required
 			/>
 			<input
-			style={{ cursor:'pointer'}}
 				type="Date"
 				min = "2022-05-18"
 				className="formulario-tareas__input"
@@ -84,7 +82,6 @@ const FormularioTareas = ({tareas, cambiarTareas}) => {
 				required
 			/>
 			<select
-			style={{ cursor:'pointer'}}
 				type="text"
 				className="formulario-tareas__input"
 				placeholder="Tiempo estimado"
@@ -97,7 +94,7 @@ const FormularioTareas = ({tareas, cambiarTareas}) => {
 				<option value="8" name="Media"> Media </option>
 				<option value="20" name="Larga"> Larga </option>
 			</select>
-			<button type='Submit' style={{ position:'relative',textAlign: 'center', fontSize:'32px', left:'10px'}}><img src={agregar}/></button>
+			<button type='Submit' style={{ textAlign: 'center', fontSize:'24px', marginLeft:'20px'}}>✔</button>
 		</form>
 	);
 }

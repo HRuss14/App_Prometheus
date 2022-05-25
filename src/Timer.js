@@ -10,8 +10,6 @@ import SettingsContext from "./SettingsContext";
 import userEvent from '@testing-library/user-event';
 import { UserContext } from './userContext';
 import { Howl } from "howler";
-import reset from './reset.svg'
-import complete from './complete.svg'
 
 const red = '#f54e4e';
 const green = '#4aec8c';
@@ -228,9 +226,8 @@ function Timer() {
   }
 
   return (
-    <div id="pomodoroTimer" style={{marginTop:'30px', display: 'block'}}>
-      <select onChange={handleChange} required class="selectTareas" style={{height:'35px',width:'150%',left:'-80px' ,top:'-80px', position:'relative', fontSize:'18px',background:'#ffffff', 
-      borderRadius:'5px',  color: '#444',  display: 'block',paddingLeft: '10px'}}>
+    <div id="pomodoroTimer" style={{marginTop:'100px', display: 'block'}}>
+      <select onChange={handleChange} required class="selectTareas" style={{height:'35px',width:'150%',left:'-80px' , position:'relative', fontSize:'18px',background:'#ffffff', borderRadius:'5px', border:'1px solid rgb(109, 19, 27) '}}>
         <option value="ListaTareas" disabled selected> Seleccione Tarea </option>
         {tareas.length > 0 ? tareas.map((tarea) => {
           return <option value={tarea.id}>{tarea.texto}</option>
@@ -244,14 +241,14 @@ function Timer() {
         pathColor:mode === 'work' ? red : green,
         tailColor:'rgba(255,255,255,.2)',
       })} />
-      <div style={{marginTop:'80px'}}>
+      <div style={{marginTop:'30px'}}>
         {isPaused
-          ? <PlayButton style={{ position:'relative',top:'-2px', left:'-100px'}} onClick={() => handlePlay(cambio)} />
-          : <PauseButton style={{ position:'relative',top:'-2px', left:'-100px'}} onClick={() => { setIsPaused(true); isPausedRef.current = true; aumentarPausas()}} />}
-        <button style={{ position:'relative', top:'-10px'}} onClick={() => handleReiniciar()}> <img  src={reset} /> </button>
-        <button style={{ position:'relative', top:'-10px', left:'100px'}} onClick={() => handleTerminar()}> <img  src={complete} /></button>
+          ? <PlayButton onClick={() => handlePlay(cambio)} />
+          : <PauseButton onClick={() => { setIsPaused(true); isPausedRef.current = true; aumentarPausas()}} />}
+        <button onClick={() => handleReiniciar()}> Reiniciar </button>
+        <button onClick={() => handleTerminar()}> Terminé la Tarea </button>
       </div>
-      <div style={{marginTop:'40px'}}>
+      <div style={{marginTop:'20px'}}>
         <SettingsButton onClick={() => settingsInfo.setShowSettings(true)} />
       </div>
     </div>
