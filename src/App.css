@@ -197,20 +197,21 @@ label {
 
 .header__boton {
 	background: none;
-	font-size: 16px;
+	font-size: 15px;
 	color: #2A1215;
-	border: none;
+	background-color: #fff1f0;
+	font-weight: bold;
 	cursor: pointer;
-	background-color: #FAFAFA;
 	padding: 5px 10px;
-	border-radius: 5px;
-	display: flex;
+	border-radius: 15px;
 	align-items: center;
+	margin-right: 20px;
 }
 
 .header__boton:hover {
-	transform: scale(1.05);
+	transform: scale(1.07);
 	font-weight: bold;
+	font-size: 16px;
 }
 
 

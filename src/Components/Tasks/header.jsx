@@ -2,13 +2,17 @@ import React from "react";
 
 const Header = ({mostrarCompletadas, cambiarMostrarCompletadas}) => {
 	const toggleCompletadas = () => {
-		cambiarMostrarCompletadas(!mostrarCompletadas);
+		if(mostrarCompletadas === "Pendiente"){
+			cambiarMostrarCompletadas("Completada");
+		}else if(mostrarCompletadas === "Completada"){
+			cambiarMostrarCompletadas("Pendiente");
+		}
 	}
 
 	return (
 		<header className="header">
 			<h1 className="header__titulo">Lista de Tareas</h1>
-			{/* {mostrarCompletadas ?
+			{mostrarCompletadas === "Completada" ?
 				<button 
 					className="header__boton"
 					onClick={() => toggleCompletadas()}
@@ -21,10 +25,10 @@ const Header = ({mostrarCompletadas, cambiarMostrarCompletadas}) => {
 					className="header__boton"
 					onClick={() => toggleCompletadas()}
 				>
-					Todas
+					      Todas
 					
 				</button>
-			} */}
+			}	
 		</header>
 	);
 }

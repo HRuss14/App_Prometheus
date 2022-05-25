@@ -24,6 +24,7 @@ const AgendaTareas = () => {
           completada: tarea.state,
           tiempoEst: tarea.stimated_time,
           dueDate: tarea.due_date,
+          esfuerzo: tarea.effort
         };
       });
       cambiarTareas(tareasGuardadas);
@@ -32,9 +33,9 @@ const AgendaTareas = () => {
 
   let configMostrarCompletadas = '';
   if (localStorage.getItem('mostrarCompletadas') === null) {
-    configMostrarCompletadas = true;
+    configMostrarCompletadas = "Completada";
   } else {
-    configMostrarCompletadas = localStorage.getItem('mostrarCompletadas') === 'true';
+    configMostrarCompletadas = localStorage.getItem('mostrarCompletadas') === "Pendiente";
   }
   const [mostrarCompletadas, cambiarMostrarCompletadas] = useState(configMostrarCompletadas);
 

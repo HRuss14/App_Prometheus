@@ -11,8 +11,8 @@ import { UserContext } from '../../Context/userContext';
 function Tempo() {
 
   const [showSettings, setShowSettings] = useState(false);
-  const [workMinutes, setWorkMinutes] = useState(0.05);
-  const [breakMinutes, setBreakMinutes] = useState(0.05);
+  const [workMinutes, setWorkMinutes] = useState(25);
+  const [breakMinutes, setBreakMinutes] = useState(5);
   const {user, changeUser} = useContext(UserContext)
 
   useEffect(() => {

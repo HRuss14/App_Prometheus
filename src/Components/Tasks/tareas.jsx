@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCheckSquare, faEdit, faSquare, faTimes} from '@fortawesome/free-solid-svg-icons';
-import axios from 'axios';
 
 const Tarea = ({tarea, toggleCompletada, editarTarea, borrarTarea}) => {
 	const [editandoTarea, cambiarEditandoTarea] = useState(false);
@@ -9,7 +8,7 @@ const Tarea = ({tarea, toggleCompletada, editarTarea, borrarTarea}) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		editarTarea(tarea.id, nuevaTarea, tarea.tiempoEst, tarea.dificultad, tarea.dueDate);
+		editarTarea(tarea.id, nuevaTarea, tarea.tiempoEst, tarea.dificultad, tarea.dueDate, tarea.esfuerzo);
 		cambiarEditandoTarea(false);
 	}
 
@@ -47,7 +46,7 @@ const Tarea = ({tarea, toggleCompletada, editarTarea, borrarTarea}) => {
 						Actualizar
 					</button>
 				</form>
-				: <p style={{margin:'10px'}}><h4 style={{ marginBottom:'5px', fontSize:'18px'}}>{tarea.texto}</h4> Dificultad: {tarea.dificultad}  -   Fecha: {tarea.dueDate} -  Tiempo Estimado: {formatEstTime(tarea.tiempoEst, tarea.texto)}</p>
+				: <p style={{margin:'10px'}}><h4 style={{ marginBottom:'5px', fontSize:'18px'}}>{tarea.texto}</h4> Dificultad: {tarea.dificultad}  -   Fecha: {tarea.dueDate} -  Tiempo Estimado: {formatEstTime(tarea.tiempoEst, tarea.texto)} {tarea.completada === "Completada" ? " - Esfuerzo: "+tarea.esfuerzo : null}</p>
 				}
 			</div>
 			<div className="lista-tareas__contenedor-botones">

@@ -1,8 +1,12 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Tarea from './tareas';
 import axios from'../../instances/axiosInstance';
+import { UserContext } from '../../Context/userContext';
 
 const ListaTareas = ({tareas, cambiarTareas, mostrarCompletadas}) => {
+
+	const {user, changeUser} = useContext(UserContext)
+
 	const toggleCompletada = (id) => {
 		cambiarTareas(tareas.map((tarea) => {
 			if(tarea.id === id && tarea.completada==="Pendiente"){
@@ -14,15 +18,15 @@ const ListaTareas = ({tareas, cambiarTareas, mostrarCompletadas}) => {
 		}));
 	}
 
-	const editarTarea = (id, nuevoTexto, tiempoE, dificultad, dueDate) => {
+	const editarTarea = (id, nuevoTexto, tiempoE, dificultad, dueDate, effort) => {
 		axios.put('tasks', {
             task_id: id,
-    		user_id: "User1",
+    		user_id: user.id,
     		title: nuevoTexto,
     		category: "Ejecución",
     		stimated_time: tiempoE,
     		difficulty: dificultad,
-    		effort: 0,
+    		effort: effort,
     		state: "Pendiente",
     		due_date: dueDate,
         })
@@ -52,7 +56,7 @@ const ListaTareas = ({tareas, cambiarTareas, mostrarCompletadas}) => {
 	return (
 		<ul className="lista-tareas">
 			{tareas.length > 0 ? tareas.map((tarea) => {
-				if(mostrarCompletadas){
+				if(mostrarCompletadas === "Completada"){
 					return <Tarea 
 								key={tarea.id}
 								tarea={tarea}
@@ -61,7 +65,7 @@ const ListaTareas = ({tareas, cambiarTareas, mostrarCompletadas}) => {
 								borrarTarea={borrarTarea}
 							/>
 				
-				} else if(!tarea.completada){
+				} else if(mostrarCompletadas === "Pendiente" && tarea.completada === "Pendiente"){
 					return <Tarea 
 								key={tarea.id}
 								tarea={tarea}
@@ -70,8 +74,6 @@ const ListaTareas = ({tareas, cambiarTareas, mostrarCompletadas}) => {
 								borrarTarea={borrarTarea}
 							/>
 				}
-				
-				return;
 			})
 			:<div className="lista-tareas__mensaje"></div>
 			}

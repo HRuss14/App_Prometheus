@@ -94,6 +94,7 @@ const Estadisticas=()=>{
           completada: tarea.state,
           tiempoEst: tarea.stimated_time,
           dueDate: tarea.due_date,
+          esfuerzo: tarea.effort,
         };
       });
       cambiarTareas(tareasGuardadas);
@@ -125,6 +126,14 @@ const Estadisticas=()=>{
     return cantTareas
   }
 
+  function esfuerzoTotal(){
+    let esfuTotal = 0
+    const totalTareas = tareas.map((tarea) => {
+        esfuTotal = esfuTotal + tarea.esfuerzo
+    })
+    return esfuTotal
+  }
+
   const data = [
     {
       name: "Dificultad de la Tareas",
@@ -134,12 +143,12 @@ const Estadisticas=()=>{
     },  
    
   ]; 
+
   const esfuerzo = [
     {
       name: "Esfuerzo Total",
-      Esfuerzo: 400,
-      
-    
+      Esfuerzo: esfuerzoTotal(),
+      EsfuerzoP: (esfuerzoTotal()/tareas.length)
     },  
    
   ];
@@ -219,13 +228,14 @@ const Estadisticas=()=>{
       <div style={{position:'relative',  left:'250px', top:'-750px'}} >
         <h3 style={{fontSize: '24px', fontWeight:'normal', color:'#2A1215'}}>Cálculo de esfuerzo:</h3>
         
-        <BarChart width={300} height={300} data={esfuerzo} margin={{top: 5, right: 30, left: 20, bottom: 5}} style={{position:'relative' , left:'0px', top:'50px'}}>
+        <BarChart width={400} height={300} data={esfuerzo} margin={{top: 5, right: 30, left: 20, bottom: 5}} style={{position:'relative' , left:'0px', top:'50px'}}>
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="name" />
       <YAxis />
       <Tooltip />
-     
+      <Legend />
       <Bar dataKey="Esfuerzo" fill="#8fd460" />
+      <Bar dataKey="EsfuerzoP" fill="#6f9412" />
       
       </BarChart>
       </div>

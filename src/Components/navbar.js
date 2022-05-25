@@ -23,7 +23,7 @@ const NavBar=()=>{
             <NavLink to='/tareas'>Mis Tareas</NavLink>
             <NavLink to='/temporizador'>Temporizador</NavLink>
             <NavLink to='/estadisticas'>Estadísticas</NavLink>
-            <NavLink style={{position:'absolute', right:'0px'}} to='/login' onClick={() => refresh()}> <img class="logout" src={logout}></img></NavLink>
+            <NavLink style={{position:'absolute', right:'0px'}} to='/' onClick={() => refresh()}> <img class="logout" src={logout}></img></NavLink>
             <p style={{position:'absolute', right:'80px', marginTop:'-55px', color:'#f0f5ff', fontSize:'28px', fontWeight:'bold'}}>
                 <img src={logoU} class="logo-user"/>{user.name}</p>
           </nav>

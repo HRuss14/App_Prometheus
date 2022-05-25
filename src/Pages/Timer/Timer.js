@@ -167,6 +167,31 @@ function Timer() {
           }, (error) => {
               console.log(error);
           });
+
+          let effort = 0
+          const encontrarTarea = tareas.map((tarea) => {
+            if (tarea.id === pomodoroPost.id_task){
+              effort = (((2/3)*tarea.dificultad)+((1/3)*(Math.pow(tarea.dificultad, 3))))/(2*pomodoroPost.work_time*numeroPom)
+              axios.put('tasks', {
+                task_id: tarea.id,
+                user_id: user.id,
+                title: tarea.texto,
+                category: "Ejecución",
+                stimated_time: tarea.tiempoEst,
+                difficulty: tarea.dificultad,
+                effort: effort,
+                state: "Completada",
+                due_date: tarea.dueDate,
+            })
+            .then((response) => {
+                console.log(response);
+            }, (error) => {
+                console.log(error);
+            });
+              console.log(effort)
+            }
+          })
+
           setIsPaused(true)
           isPausedRef.current = true
           setMode("break")
@@ -233,7 +258,7 @@ function Timer() {
       borderRadius:'5px',  color: '#444',  display: 'block',paddingLeft: '10px'}}>
         <option value="ListaTareas" disabled selected> Seleccione Tarea </option>
         {tareas.length > 0 ? tareas.map((tarea) => {
-          return <option value={tarea.id}>{tarea.texto}</option>
+          return <option value={tarea.id} disabled={tarea.completada==="Completada" ? true : null}>{tarea.texto}</option>
         }):<></>}
         </select>
       <CircularProgressbar
